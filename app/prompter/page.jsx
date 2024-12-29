@@ -1,5 +1,5 @@
-'use client';
-//プロンプター画面：
+'use client'; 
+//プロンプター画面：メインカテゴリ->サブカテゴリ->時間帯->雰囲気->リザルト、のみ
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
@@ -33,11 +33,11 @@ export default function Prompt() {
 
     //雰囲気
     if (mood) {
-      prompt += `、${mood}雰囲気の`;
+      prompt += `${mood}雰囲気の`;
     }
 
-    //表示文字の最後に「風景」を表示
-    prompt += '風景';
+    //表示文字の最後に「風景」を表示、次の画面にいくと画像表示されにくいなぜ：治った
+    prompt+='風景';
 
     return prompt;
   };
@@ -86,10 +86,11 @@ export default function Prompt() {
                   key={option}
                   onClick={() => handleCategorySelect(option)}
                   style={{
-                    padding: '10px 20px',
+                    padding: '20px 40px',
                     border: category === option ? '2px solid blue' : '1px solid gray',
                     backgroundColor: category === option ? '#cce5ff' : 'white',
                     cursor: 'pointer',
+                    fontSize: '25px',
                   }}
                 >
                   {option}
@@ -105,22 +106,22 @@ export default function Prompt() {
             <div style={{ display: 'flex', justifyContent: 'center', gap: '10px' }}>
               {category === '自然' && (
                 <>
-                  <button onClick={() => handleSubCategorySelect('森')}>森</button>
-                  <button onClick={() => handleSubCategorySelect('湖')}>湖</button>
-                  <button onClick={() => handleSubCategorySelect('山')}>山</button>
+                  <button onClick={() => handleSubCategorySelect('森')} style={{ padding: '20px 40px' }}>森</button>
+                  <button onClick={() => handleSubCategorySelect('湖')} style={{ padding: '20px 40px' }}>湖</button>
+                  <button onClick={() => handleSubCategorySelect('山')} style={{ padding: '20px 40px' }}>山</button>
                 </>
               )}
               {category === '都市' && (
                 <>
-                  <button onClick={() => handleSubCategorySelect('夜景')}>夜景</button>
-                  <button onClick={() => handleSubCategorySelect('広場')}>広場</button>
-                  <button onClick={() => handleSubCategorySelect('摩天楼')}>摩天楼</button>
+                  <button onClick={() => handleSubCategorySelect('夜景')} style={{ padding: '20px 40px' }}>夜景</button>
+                  <button onClick={() => handleSubCategorySelect('広場')} style={{ padding: '20px 40px' }}>広場</button>
+                  <button onClick={() => handleSubCategorySelect('高層ビル')} style={{ padding: '20px 40px' }}>高層ビル</button>
                 </>
               )}
               {category === 'ファンタジー' && (
                 <>
-                  <button onClick={() => handleSubCategorySelect('魔法の森')}>魔法の森</button>
-                  <button onClick={() => handleSubCategorySelect('ドラゴンの山')}>ドラゴンの山</button>
+                  <button onClick={() => handleSubCategorySelect('魔法の森')} style={{ padding: '20px 40px' }}>魔法の森</button>
+                  <button onClick={() => handleSubCategorySelect('ドラゴンの山')} style={{ padding: '20px 40px' }}>ドラゴンの山</button>
                 </>
               )}
             </div>
@@ -136,10 +137,11 @@ export default function Prompt() {
                   key={option}
                   onClick={() => handleTimeOfDaySelect(option)}
                   style={{
-                    padding: '10px 20px',
+                    padding: '20px 40px',
                     border: timeOfDay === option ? '2px solid blue' : '1px solid gray',
                     backgroundColor: timeOfDay === option ? '#cce5ff' : 'white',
                     cursor: 'pointer',
+                    fontSize: '25px',
                   }}
                 >
                   {option}
@@ -158,10 +160,11 @@ export default function Prompt() {
                   key={option}
                   onClick={() => handleMoodSelect(option)}
                   style={{
-                    padding: '10px 20px',
+                    padding: '20px 40px',
                     border: mood === option ? '2px solid blue' : '1px solid gray',
                     backgroundColor: mood === option ? '#cce5ff' : 'white',
                     cursor: 'pointer',
+                    fontSize: '25px',
                   }}
                 >
                   {option}
@@ -176,14 +179,19 @@ export default function Prompt() {
           <div className="result-prompt slide-in">
             <h2>生成されたプロンプト</h2>
             <p>{generatePrompt()}</p>
-            <button onClick={handleConfirmNavigation}>プロンプトを確認する</button>
+            <button onClick={handleConfirmNavigation} 
+              style={{ padding: '10px 30px',
+                       fontSize: '20px',
+              }}>
+              プロンプトを確認する
+            </button>
           </div>
         )}
       </div>
 
       {/* 今までの選択プロンプトを下部に表示する */}
       <div className="fixed-prompt">
-        {step !== 5 && ( // ステップ5の時だけ表示を消す
+        {step !== 5 && ( //ステップ5の時だけ表示を消す
           <>
             <h2>選択されたプロンプト</h2>
             <p>{generatePrompt()}</p>
