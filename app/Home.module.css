@@ -1,0 +1,48 @@
+/* mainStyle */
+.main {
+    text-align: center;
+    padding-bottom: 80px;
+  }
+  
+  /* buttonStyle */
+  .button {
+    width: 200px;
+    height: 50px;
+    font-size: 16px;
+    padding: 10px;
+    background-color: #007BFF;/*ボタンカラー*/
+    color: #fff;/*ボタンの文字色 */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 150px;
+  }
+  
+  .imageGallery {
+    display: flex;
+    justify-content: center; /*画像を中央揃え*/
+    gap: 40px;
+    flex-wrap: wrap;
+    padding-top: 20px;
+  }
+  
+  /* imageContainerStyle */
+  .imageContainer {
+    text-align: center;
+  }
+  
+  
+  .image {
+    width:350px;
+    height:auto;
+    border-radius:10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);/*影つけておしゃれ*/
+  }
+  
+  
+  .caption {
+    margin-top: 15px;
+    font-size: 20px; /* 説明文のフォントサイズを大きく */
+    color: #000;
+  }
+  
