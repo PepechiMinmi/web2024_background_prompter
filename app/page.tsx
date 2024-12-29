@@ -5,12 +5,10 @@ export default function Home() {
     <div>
       <main>
         <h1>背景プロンプター</h1>
-        <p>
-          AI画像生成用の背景プロンプトを簡単に作成しましょう！
-        </p>
+        <h2>AI画像生成用の背景プロンプトを簡単に作成しよう！</h2>
 
         <Link href="/prompter">        
-          <button >プロンプトを作成する</button>
+          <button>プロンプトを作成する</button>
         </Link>
 
       </main>

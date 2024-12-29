@@ -2,6 +2,7 @@ import Header from './headfoot_components/Header';
 import Footer from './headfoot_components/Footer';
 import { ReactNode } from 'react'; // 追加
 
+
 export const metadata = {
   title: 'Background Prompter',
 };
@@ -13,7 +14,6 @@ interface RootLayoutProps {
 const bodyStyle = {
   margin: '0 ',
   padding: 0,
-  
 };
 
 const mainStyle = {
@@ -32,7 +32,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <body style={bodyStyle}>
         <Header />
         <main style={mainStyle}>{children}</main>
-        <Footer />
+        <Footer/>
       </body>
     </html>
   );

@@ -15,10 +15,30 @@ export default function Prompt() {
 
   // プロンプトを生成する関数
   const generatePrompt = () => {
-    let prompt = `背景: ${category}`;
-    if (subCategory) prompt += ` > ${subCategory}`;
-    if (timeOfDay) prompt += ` | 時間帯: ${timeOfDay}`;
-    if (mood) prompt += ` | 雰囲気: ${mood}`;
+    let prompt = '';
+    
+    // カテゴリとサブカテゴリを組み合わせる
+    if (category === '自然') {
+      prompt += subCategory ? `${subCategory}の` : '';
+    } else if (category === '都市') {
+      prompt += subCategory ? `${subCategory}の` : '';
+    } else if (category === 'ファンタジー') {
+      prompt += subCategory ? `${subCategory}の` : '';
+    }
+
+    // 時間帯
+    if (timeOfDay) {
+      prompt += `${timeOfDay}の`;
+    }
+
+    // 雰囲気
+    if (mood) {
+      prompt += `、${mood}雰囲気の`;
+    }
+
+    // 最後に"風景"を追加
+    prompt += '風景';
+
     return prompt;
   };
 
@@ -149,7 +169,7 @@ export default function Prompt() {
         )}
 
         {step === 5 && showGeneratedPrompt && (
-          <div className="slide-in-generated-prompt">
+          <div className="result-prompt slide-in">
             <h2>生成されたプロンプト</h2>
             <p>{generatePrompt()}</p>
             <button onClick={handleConfirmNavigation}>プロンプトを確認する</button>
@@ -181,21 +201,6 @@ export default function Prompt() {
           }
         }
 
-        /* 生成されたプロンプトがスライドインする */
-        .slide-in-generated-prompt {
-          animation: slideInUp 0.5s ease-out;
-        }
-
-        @keyframes slideInUp {
-          from {
-            transform: translateY(100%);
-          }
-          to {
-            transform: translateY(0);
-          }
-        }
-
-        /* プロンプト内容を固定表示 */
         .fixed-prompt {
           position: fixed;
           bottom: 0;
@@ -203,9 +208,21 @@ export default function Prompt() {
           right: 0;
           background-color: rgba(0, 0, 0, 0.8);
           color: white;
-          padding: 20px;
+          padding: 80px;
           text-align: center;
-          z-index: 10; /* フッターより上に表示するためにz-indexを追加 */
+          z-index: 1500;
+        }
+
+        .result-prompt {
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          background-color: rgba(0, 0, 0, 0.8);
+          color: white;
+          padding: 80px;
+          text-align: center;
+          z-index: 2000;
         }
       `}</style>
     </div>
