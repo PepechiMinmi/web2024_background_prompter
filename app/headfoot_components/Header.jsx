@@ -13,9 +13,9 @@ export default function Header() {
     position: 'fixed',
     top: 0,
     width: '100%',
-    height: '60px',
-    backgroundColor: '#000',
-    color: '#fff',
+    height: '100px',
+    backgroundColor: '#88bfbf',//'#66cccc',
+    color: '#eb6101',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -26,6 +26,6 @@ export default function Header() {
   const linkStyle = {
     margin: '0 10px',
     color: '#fff',
-    textDecoration: 'none',
+    //textDecoration: 'none',
   };
   

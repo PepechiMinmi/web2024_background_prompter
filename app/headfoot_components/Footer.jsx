@@ -12,7 +12,7 @@ const footerStyle = {
   bottom: 0,
   width: '100%',
   height: 'auto', // 高さを自動に調整
-  backgroundColor: '#000',
+  backgroundColor: '#88bfbf',//'#66cccc',//'#80aba9',
   color: '#fff',
   display: 'flex',
   flexDirection: 'column', // 縦並びに設定
