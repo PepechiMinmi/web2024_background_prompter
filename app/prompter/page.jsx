@@ -1,23 +1,23 @@
 'use client';
-
+//プロンプター画面：
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 export default function Prompt() {
   const router = useRouter();
 
-  const [category, setCategory] = useState('');
-  const [subCategory, setSubCategory] = useState('');
-  const [timeOfDay, setTimeOfDay] = useState('');
-  const [mood, setMood] = useState('');
-  const [step, setStep] = useState(1); // 現在のステップを管理
+  const [category, setCategory] = useState('');//カテゴリ用
+  const [subCategory, setSubCategory] = useState('');//サブカテ用
+  const [timeOfDay, setTimeOfDay] = useState('');//時間帯
+  const [mood, setMood] = useState('');//雰囲気用
+  const [step, setStep] = useState(1); // 現在のステップ管理
   const [showGeneratedPrompt, setShowGeneratedPrompt] = useState(false); // プロンプト表示状態
 
-  // プロンプトを生成する関数
+  //プロンプト生成用の関数
   const generatePrompt = () => {
     let prompt = '';
     
-    // カテゴリとサブカテゴリを組み合わせる
+    // カテゴリとサブカテゴリの合体
     if (category === '自然') {
       prompt += subCategory ? `${subCategory}の` : '';
     } else if (category === '都市') {
@@ -26,43 +26,46 @@ export default function Prompt() {
       prompt += subCategory ? `${subCategory}の` : '';
     }
 
-    // 時間帯
+    //時間帯
     if (timeOfDay) {
       prompt += `${timeOfDay}の`;
     }
 
-    // 雰囲気
+    //雰囲気
     if (mood) {
       prompt += `、${mood}雰囲気の`;
     }
 
-    // 最後に"風景"を追加
+    //表示文字の最後に「風景」を表示
     prompt += '風景';
 
     return prompt;
   };
 
-  // 各ステップが選択されるたびに進む処理
+  //カテゴリを選択すると次に行く様
   const handleCategorySelect = (category) => {
     setCategory(category);
     setSubCategory(''); // サブカテゴリをリセット
-    setStep(2); // 次のステップ（サブカテゴリ）に進む
+    setStep(2); // 次のステップ:サブカテゴリ
   };
 
+  //サブカテセット
   const handleSubCategorySelect = (subCategory) => {
     setSubCategory(subCategory);
-    setStep(3); // 次のステップ（時間帯）に進む
+    setStep(3); //時間
   };
 
+  //時間セット
   const handleTimeOfDaySelect = (timeOfDay) => {
     setTimeOfDay(timeOfDay);
-    setStep(4); // 次のステップ（雰囲気）に進む
+    setStep(4); //次のステップ：雰囲気
   };
 
+  //雰囲気セット
   const handleMoodSelect = (mood) => {
     setMood(mood);
-    setStep(5); // 次のステップ（確認）に進む
-    setShowGeneratedPrompt(true); // プロンプト表示をスライドインさせる
+    setStep(5); //次のステップ：確認
+    setShowGeneratedPrompt(true);
   };
 
   const handleConfirmNavigation = () => {
@@ -168,6 +171,7 @@ export default function Prompt() {
           </div>
         )}
 
+        {/* 修正：下部じゃなくて、上に表示されるようには*/}
         {step === 5 && showGeneratedPrompt && (
           <div className="result-prompt slide-in">
             <h2>生成されたプロンプト</h2>
@@ -177,7 +181,7 @@ export default function Prompt() {
         )}
       </div>
 
-      {/* プロンプト内容を下部に表示 */}
+      {/* 今までの選択プロンプトを下部に表示する */}
       <div className="fixed-prompt">
         {step !== 5 && ( // ステップ5の時だけ表示を消す
           <>
