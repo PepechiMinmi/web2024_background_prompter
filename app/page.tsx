@@ -23,10 +23,20 @@ const imageGalleryStyle: React.CSSProperties = {
   gap: '20px', // 画像間の間隔
 };
 
+const imageContainerStyle: React.CSSProperties = {
+  textAlign: 'center', // 画像と説明文を中央揃え
+};
+
 const imageStyle: React.CSSProperties = {
   width: '200px', // 画像の幅
   height: 'auto', // 高さは自動
   borderRadius: '10px', // 画像の角を丸くする
+};
+
+const captionStyle: React.CSSProperties = {
+  marginTop: '10px', // 画像と説明文の間にスペースを追加
+  fontSize: '14px', // 説明文のフォントサイズ
+  color: '#555', // 説明文の色
 };
 
 export default function Home() {
@@ -43,9 +53,18 @@ export default function Home() {
         
         {/* プロンプトを使った、参考画像ギャラリー */}
         <div style={imageGalleryStyle}>
-          <img src="image1.jpg" alt="プロンプト1：森の昼の賑やか雰囲気の風景" style={imageStyle} />
-          <img src="image2.jpg" alt="プロンプト2：" style={imageStyle} />
-          <img src="image3.jpg" alt="プロンプト3：" style={imageStyle} />
+          <div style={imageContainerStyle}>
+            <img src="image1.jpg" alt="プロンプト1：森の昼の賑やか雰囲気の風景" style={imageStyle} />
+            <p style={captionStyle}>プロンプト1：森の昼の賑やか雰囲気の風景</p>
+          </div>
+          <div style={imageContainerStyle}>
+            <img src="image2.jpg" alt="プロンプト2：高層ビルの夜の静か雰囲気の風景" style={imageStyle} />
+            <p style={captionStyle}>プロンプト2：高層ビルの夜の静か雰囲気の風景</p>
+          </div>
+          <div style={imageContainerStyle}>
+            <img src="image3.jpg" alt="プロンプト3：ドラゴンの山の朝の賑やか雰囲気の風景" style={imageStyle} />
+            <p style={captionStyle}>プロンプト3：ドラゴンの山の朝の賑やか雰囲気の風景</p>
+          </div>
         </div>
       </main>
     </div>
